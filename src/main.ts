@@ -14,7 +14,11 @@ async function bootstrap() {
     allowedHeaders: '*',
   });
   app.useGlobalPipes(new ValidationPipe({
-    whitelist: true
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transformOptions:{
+      exposeUnsetFields:false
+    }
 
   }));
 

@@ -55,9 +55,21 @@ export class CarsService {
 
     }
 
-    update(updateCarDto: UpdateCarDto){
+    update(id: string, updateCarDto: UpdateCarDto){
+        let carDB = this.findOneById(id);
         
-        return updateCarDto;
+        this.cars = this.cars.map(car => {
+            
+            if(car.id===id){
+                carDB = {...carDB,  ...updateCarDto, id}
+                console.log(carDB);
+                return carDB;
+            }
+
+            return car;
+        })
+
+        return carDB;
 
     }
 }
