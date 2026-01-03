@@ -1,4 +1,4 @@
-import { IsString } from "class-validator";
+import { IsNumber, IsString } from "class-validator";
 
 export class CreateCarDto {
    @IsString()
@@ -6,6 +6,7 @@ export class CreateCarDto {
 
    @IsString()
    readonly marca: string;
+
 
 
 

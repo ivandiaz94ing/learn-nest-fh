@@ -22,8 +22,13 @@ export class BrandsService {
 
 
   create(createBrandDto: CreateBrandDto) {
-    
-    return 'This action adds a new brand';
+    const newBrand : Brand = {
+      id: uuid(),
+      ...createBrandDto,
+      createdAt: Date.now(),
+    }
+    this.brands.push(newBrand);
+    return newBrand;
   }
 
   findAll() {
@@ -41,7 +46,20 @@ export class BrandsService {
 
 
   update(id: string, updateBrandDto: UpdateBrandDto) {
-    return `This action updates a #${id} brand`;
+      const brand = this.findOne(id);
+
+      // this.brands = this.brands.map(brand => {
+      //   if (brand) {
+      //     return {
+      //       ...brand,
+      //       ...updateBrandDto,
+      //       createdAt: brand.createdAt,
+      //       updatedAt: Date.now(),
+      //     };
+      //   }
+      //   return brand;
+      // });
+    return updateBrandDto;
   }
 
   remove(id: string) {

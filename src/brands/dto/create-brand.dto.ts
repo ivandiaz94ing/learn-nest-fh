@@ -1,13 +1,13 @@
-import { IsString, IsUUID, MinLength } from "class-validator";
+import { IsNumber, IsString } from "class-validator";
 
 export class CreateBrandDto {
-    @IsUUID()
-    id: string;
 
     @IsString()
-    @MinLength(3)
-    name: string;
+    readonly name: string;
+
+    @IsNumber()
+    readonly createdAt: number;
+
     
-    createdAt: number;
 
 }
