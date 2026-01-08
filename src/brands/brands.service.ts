@@ -46,20 +46,21 @@ export class BrandsService {
 
 
   update(id: string, updateBrandDto: UpdateBrandDto) {
-      const brand = this.findOne(id);
+      let brandDB = this.findOne(id);
 
-      // this.brands = this.brands.map(brand => {
-      //   if (brand) {
-      //     return {
-      //       ...brand,
-      //       ...updateBrandDto,
-      //       createdAt: brand.createdAt,
-      //       updatedAt: Date.now(),
-      //     };
-      //   }
-      //   return brand;
-      // });
-    return updateBrandDto;
+      this.brands = this.brands.map(brand => {
+        if (brand.id === id) {
+          brandDB = {
+            ...brandDB,
+            ...updateBrandDto,
+            updatedAt: Date.now(),
+          }
+          console.log(brandDB);
+          return brandDB;
+        }        
+        return brand;
+      });
+      return brandDB;
   }
 
   remove(id: string) {
