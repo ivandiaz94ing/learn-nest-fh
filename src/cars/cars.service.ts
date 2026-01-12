@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Car } from './interfaces/car.interface';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuid } from 'uuid';
 import { CreateCarDto } from './dto/create-car.dto';
 import { UpdateCarDto } from './dto/update-car.dto';
 
@@ -10,26 +10,11 @@ export class CarsService {
     //    console.log(uuidv4());
     // } 
     private cars : Car[] = [
-        {
-            id: uuidv4(),
-            marca: "Toyota",
-            modelo: "Corolla"
-        },
-        {
-            id: uuidv4(),
-            marca: "Honda",
-            modelo: "Civic"
-        },
-        {
-            id: uuidv4(),
-            marca: "Jeep",
-            modelo: "Cherokee"
-        },
-        {
-            id: uuidv4(),
-            marca: "Mazda",
-            modelo: "Alegro"
-        },
+        // {
+        //     id: uuidv4(),
+        //     marca: "Toyota",
+        //     modelo: "Corolla"
+        // }
         
     ]
 
@@ -47,7 +32,7 @@ export class CarsService {
 
     create(createCarDto: CreateCarDto){
         const newCar : Car = {
-            id: uuidv4(),
+            id: uuid(),
             ...createCarDto
         }
 
@@ -78,5 +63,9 @@ export class CarsService {
        if(!carDelete)return
        this.cars = this.cars.filter(car => car.id !== id);
 
+    }
+
+    cargarSemillaCarro(cars: Car[]){
+        this.cars = cars;
     }
 }

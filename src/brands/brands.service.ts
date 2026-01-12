@@ -7,24 +7,20 @@ import { v4 as uuid } from 'uuid';
 export class BrandsService {
 
   private brands: Brand [] = [
-    {
-      id: uuid(),
-      name: 'Toyota',
-      createdAt: Date.now(),
-    },
-
-    {
-      id: uuid(),
-      name: 'Honda',  
-      createdAt: Date.now(),
-    },
+    // {
+    //   id: uuid(),
+    //   name: 'Toyota',
+    //   createdAt: Date.now(),
+    // }
   ];
 
 
   create(createBrandDto: CreateBrandDto) {
+
+    const {name} = createBrandDto;
     const newBrand : Brand = {
       id: uuid(),
-      ...createBrandDto,
+      name: name.toLocaleLowerCase(),
       createdAt: Date.now(),
     }
     this.brands.push(newBrand);
@@ -62,10 +58,14 @@ export class BrandsService {
       });
       return brandDB;
   }
-
+  
   remove(id: string) {
     const aux = this.findOne(id);
     this.brands = this.brands.filter(brand => brand.id !== id);
     return aux;
+  }
+  
+  cargarSemillaMarcas(brands: Brand[]){
+    this.brands = brands;
   }
 }
